@@ -1,10 +1,16 @@
 cmake_minimum_required(VERSION 2.6)
 project(mdpt_vp)
 
-SET(CMAKE_BUILD_TYPE Debug)
+# Add our custom library finder directory.
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
-# Find the QtWidgets library
+# Find the QtWidgets library.
 find_package(Qt5Widgets REQUIRED)
+
+# find_package(LIBVLC REQUIRED)
+
+# For YouCompleteMe support.
+set(CMAKE_EXPORT_COMPILE_COMMANDS "ON")
 
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
@@ -13,7 +19,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Enable C++11 goodness.
 set(CMAKE_CXX_FLAGS "-std=c++11")
-
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
