@@ -3,3 +3,6 @@
 
 # Build directories
 build/
+
+# There is at least on Python file here.
+*.pyc
