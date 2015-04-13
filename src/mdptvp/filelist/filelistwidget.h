@@ -14,29 +14,28 @@ namespace filelist {
 
 class FileListModel;
 
-class FileListWidget : public QGroupBox
-{
-    Q_OBJECT
+class FileListWidget : public QGroupBox {
+  Q_OBJECT
 
-public:
-    explicit FileListWidget(QWidget *parent = 0);
-    ~FileListWidget();
+ public:
+  explicit FileListWidget(QWidget *parent = 0);
+  ~FileListWidget();
 
-    void setModel(FileListModel *file_list);
+  void setModel(FileListModel *file_list);
 
-private slots:
-    void on_deleteFilesButton_clicked();
-    void on_addFIleButton_clicked();
-    void itemActivated(const QModelIndex &index);
+ private slots:
+  void on_deleteFilesButton_clicked();
+  void on_addFIleButton_clicked();
+  void itemActivated(const QModelIndex &index);
 
-private:
-    Ui::FileListWidget *ui;
-    FileListModel *model_;
+ private:
+  Ui::FileListWidget *ui;
+  FileListModel *model_;
 
-    const QString getIndexPath(const QModelIndex &index);
+  const QString getIndexPath(const QModelIndex &index);
 };
 
 }  // namespace filelist
 }  // namespace mdptvp
 
-#endif // MDPT_FILELIST_FILELISTWIDGET_H_INCLUDED
+#endif  // MDPT_FILELIST_FILELISTWIDGET_H_INCLUDED
