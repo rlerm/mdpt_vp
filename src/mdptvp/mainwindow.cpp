@@ -6,10 +6,10 @@
 #include <vlc-qt/MediaPlayer.h>
 #include <vlc-qt/Media.h>
 
-#include "mdptvp/media/playercore.h"
-#include "mdptvp/filelist/filelistmodel.h"
 #include "mdptvp/filelist/filelist.h"
+#include "mdptvp/filelist/filelistmodel.h"
 #include "mdptvp/media/playercontrolsbox.h"
+#include "mdptvp/media/playercore.h"
 
 using mdptvp::MainWindow;
 using mdptvp::media::PlayerCore;
@@ -58,9 +58,13 @@ void MainWindow::connectSignals() {
       engine_->videoOutput()->isFullScreen());
 }
 
-MainWindow::~MainWindow() { delete ui; }
+MainWindow::~MainWindow() {
+  delete ui;
+}
 
-void MainWindow::closeEvent(QCloseEvent *) { engine_->videoOutput()->close(); }
+void MainWindow::closeEvent(QCloseEvent *) {
+  engine_->videoOutput()->close();
+}
 
 void MainWindow::setPlayState(bool should_play) {
   if (should_play) {

@@ -3,8 +3,6 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src
 )
 
-# add_subdirectory(vlc)
-
 qt5_wrap_ui(libmdptvp_ui_moc 
     mainwindow.ui 
     filelist/filelistwidget.ui
@@ -15,7 +13,6 @@ set(libmdptvp_HEADERS
     mainwindow.h 
     filelist/filelistmodel.h 
     filelist/filelistwidget.h
-    # media/mediaplayer.h
     media/playercontrolsbox.h
 )
 
@@ -24,7 +21,6 @@ add_library(libmdptvp STATIC
     filelist/filelistwidget.cpp
     filelist/filelistmodel.cpp
     media/playercontrolsbox.cpp
-    # media/mediaplayer.cpp
     ${libmdptvp_HEADERS}
     ${libmdptvp_ui_moc}
 

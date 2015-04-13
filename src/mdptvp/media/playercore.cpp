@@ -1,8 +1,8 @@
 #include "mdptvp/media/playercore.h"
 
-#include <Qt>
 #include <QDebug>
 #include <QStringList>
+#include <Qt>
 
 #include "mdptvp/filelist/filelist.h"
 #include "mdptvp/media/videowidget.h"
@@ -27,11 +27,17 @@ PlayerCore::PlayerCore(QObject *parent) : QObject(parent) {
   // video_output_->setWindowFlags(Qt::FramelessWindowHint);
 }
 
-PlayerCore::~PlayerCore() { delete video_output_; }
+PlayerCore::~PlayerCore() {
+  delete video_output_;
+}
 
-VlcMediaPlayer *PlayerCore::player() const { return player_; }
+VlcMediaPlayer *PlayerCore::player() const {
+  return player_;
+}
 
-QWidget *PlayerCore::videoOutput() const { return video_output_; }
+QWidget *PlayerCore::videoOutput() const {
+  return video_output_;
+}
 
 FileList *PlayerCore::newFileList(QObject *parent) {
   return new FileList(parent, instance_);

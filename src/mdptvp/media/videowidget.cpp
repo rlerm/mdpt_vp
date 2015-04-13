@@ -2,13 +2,15 @@
 
 using ::mdptvp::media::VideoWidget;
 
-VideoWidget::VideoWidget(QWidget *parent) : QWidget(parent) {}
-
-WId VideoWidget::request() {
-    return winId();
+VideoWidget::VideoWidget(QWidget *parent) : QWidget(parent) {
 }
 
-void VideoWidget::release() {}
+WId VideoWidget::request() {
+  return winId();
+}
+
+void VideoWidget::release() {
+}
 
 void VideoWidget::setFullscreen(bool fullscreen) {
   Qt::WindowStates states = windowState();
@@ -21,5 +23,4 @@ void VideoWidget::setFullscreen(bool fullscreen) {
     setWindowState(states);
   }
 }
-
 

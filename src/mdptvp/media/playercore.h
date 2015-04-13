@@ -5,7 +5,6 @@
 
 #include <vlc-qt/Instance.h>
 #include <vlc-qt/MediaPlayer.h>
-// #include <vlc-qt/WidgetVideo.h>
 
 class VlcMedia;
 

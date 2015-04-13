@@ -3,11 +3,11 @@
 
 #include <QMainWindow>
 
+class VlcMedia;
+
 namespace Ui {
 class MainWindow;
 }
-
-class VlcMedia;
 
 namespace mdptvp {
 
