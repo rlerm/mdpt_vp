@@ -29,14 +29,6 @@ FileListWidget::~FileListWidget() {
 void FileListWidget::setModel(FileListModel *model) {
   ui->list_view_->setModel(model);
   model_ = model;
-
-  connect(ui->list_view_->selectionModel(),
-          &QItemSelectionModel::currentRowChanged,
-          [=](const QModelIndex &current, const QModelIndex &previous) {
-    if (current != previous) {
-      emit fileSelected(getIndexPath(current));
-    }
-  });
 }
 
 void FileListWidget::on_deleteFilesButton_clicked() {
@@ -76,11 +68,6 @@ void FileListWidget::itemActivated(const QModelIndex &index) {
 
   model_->activateItem(index);
 }
-
-// void FileListWidget::current_row_changed(const QModelIndex &current,
-//                                         const QModelIndex &previous) {
-//  emit fileSelected(getIndexPath(current));
-//}
 
 const QString FileListWidget::getIndexPath(const QModelIndex &index) {
   return model_->data(index, Qt::EditRole).toString();

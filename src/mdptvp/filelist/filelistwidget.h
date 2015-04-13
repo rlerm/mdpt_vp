@@ -24,15 +24,10 @@ public:
 
     void setModel(FileListModel *file_list);
 
-signals:
-    void fileSelected(QString path);
-
 private slots:
     void on_deleteFilesButton_clicked();
     void on_addFIleButton_clicked();
     void itemActivated(const QModelIndex &index);
-    // void current_row_changed(const QModelIndex &current,
-                             // const QModelIndex &previous);
 
 private:
     Ui::FileListWidget *ui;

@@ -22,7 +22,6 @@ void MediaInfoBox::setPlayer(VlcMediaPlayer *player) {
     ui->seek_widget_->setMediaPlayer(player);
     ui->volume_widget_->setMediaPlayer(player);
 
-    // ui->volume_widget_->setVolume(player->audio()->volume());
     player->audio()->setVolume(ui->volume_widget_->volume());
     connect(ui->volume_widget_, &VlcWidgetVolumeSlider::newVolume,
             [=](int volume) { player->audio()->setVolume(volume); });
