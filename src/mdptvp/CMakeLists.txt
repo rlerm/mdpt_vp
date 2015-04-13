@@ -36,6 +36,11 @@ add_library(libmdptvp STATIC
     media/videowidget.cpp
     media/mediainfobox.h
     media/mediainfobox.cpp
+
+    gui/displaylistmodel.h
+    gui/displaylistmodel.cpp
+    gui/util.h
+    gui/util.cpp
 )    
 
 target_link_libraries(libmdptvp Qt5::Widgets ${LIBVLCQT_LIBRARY} ${LIBVLCQT_WIDGETS_LIBRARY})
