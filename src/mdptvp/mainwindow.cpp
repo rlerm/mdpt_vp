@@ -56,6 +56,8 @@ void MainWindow::connectSignals() {
                    &MainWindow::setOutputFullscreen);
   ui->controls_box_->setOutputFullscreen(
       engine_->videoOutput()->isFullScreen());
+
+  ui->info_box_->setPlayer(engine_->player());
 }
 
 MainWindow::~MainWindow() {

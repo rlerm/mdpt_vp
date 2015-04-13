@@ -21,10 +21,11 @@ PlayerCore::PlayerCore(QObject *parent) : QObject(parent) {
 
   instance_ = new VlcInstance(args, this);
   player_ = new VlcMediaPlayer(instance_);
+
+  // Initialize the video output widget.
   video_output_ = new VideoWidget(nullptr);
 
   player_->setVideoWidget(video_output_);
-  // video_output_->setWindowFlags(Qt::FramelessWindowHint);
 }
 
 PlayerCore::~PlayerCore() {

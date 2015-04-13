@@ -37,6 +37,26 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="::mdptvp::media::MediaInfoBox" name="info_box_">
+        <property name="title">
+         <string>Arquivo</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
      </layout>
     </item>
    </layout>
@@ -107,6 +127,12 @@
    <class>::mdptvp::filelist::FileListWidget</class>
    <extends>QWidget</extends>
    <header>mdptvp/filelist/filelistwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>::mdptvp::media::MediaInfoBox</class>
+   <extends>QGroupBox</extends>
+   <header>mdptvp/media/mediainfobox.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

@@ -3,18 +3,19 @@
 
 #include <QMainWindow>
 
+// Forward-declarations.
 class VlcMedia;
-
 namespace Ui {
 class MainWindow;
-}
-
+} // namespace Ui
 namespace mdptvp {
-
 namespace media {
 class PlayerCore;
-}  // namespace media
+} // namespace media
+} // namespace mdptvp
 
+
+namespace mdptvp {
 class MainWindow : public QMainWindow {
   Q_OBJECT
 
@@ -34,7 +35,6 @@ class MainWindow : public QMainWindow {
   void setOutputVisibility(bool visible);
   void setOutputFullscreen(bool fullscreen);
 };
-
 }  // namespace mdptvp
 
 #endif  // MDPTVP_MAINWINDOW_H_INCLUDED
