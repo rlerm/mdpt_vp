@@ -7,6 +7,7 @@ qt5_wrap_ui(libmdptvp_ui_moc
     mainwindow.ui 
     filelist/filelistwidget.ui
     media/playercontrolsbox.ui
+    media/mediainfobox.ui
 )
 
 set(libmdptvp_HEADERS 
@@ -33,6 +34,8 @@ add_library(libmdptvp STATIC
     media/playercore.cpp
     media/videowidget.h
     media/videowidget.cpp
+    media/mediainfobox.h
+    media/mediainfobox.cpp
 )    
 
 target_link_libraries(libmdptvp Qt5::Widgets ${LIBVLCQT_LIBRARY} ${LIBVLCQT_WIDGETS_LIBRARY})
