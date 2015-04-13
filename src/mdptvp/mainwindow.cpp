@@ -10,12 +10,14 @@
 #include "mdptvp/filelist/filelistmodel.h"
 #include "mdptvp/media/playercontrolsbox.h"
 #include "mdptvp/media/playercore.h"
+#include "mdptvp/gui/util.h"
 
 using mdptvp::MainWindow;
 using mdptvp::media::PlayerCore;
 using mdptvp::filelist::FileListModel;
 using mdptvp::filelist::FileList;
 using mdptvp::media::PlayerControlsBox;
+namespace gui = mdptvp::gui;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -50,6 +52,10 @@ void MainWindow::connectSignals() {
   QObject::connect(ui->controls_box_, &PlayerControlsBox::stopRequested,
                    engine_->player(), &VlcMediaPlayer::stop);
   ui->controls_box_->setOutputVisibility(engine_->videoOutput()->isVisible());
+  connect(ui->controls_box_, &PlayerControlsBox::moveToScreen,
+          [=](int new_screen) {
+    gui::moveToScreen(engine_->videoOutput(), new_screen);
+  });
 
   QObject::connect(ui->controls_box_,
                    &PlayerControlsBox::outputFullScreenChanged, this,

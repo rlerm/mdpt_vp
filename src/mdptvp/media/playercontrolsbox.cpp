@@ -2,13 +2,23 @@
 #include "ui_playercontrolsbox.h"
 
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QComboBox>
 
-namespace mdptvp {
-namespace media {
+#include "mdptvp/gui/displaylistmodel.h"
+
+using ::mdptvp::media::PlayerControlsBox;
+using ::mdptvp::gui::DisplayListModel;
 
 PlayerControlsBox::PlayerControlsBox(QWidget *parent)
     : QGroupBox(parent), ui(new Ui::PlayerControlsBox) {
   ui->setupUi(this);
+
+  DisplayListModel *display_list = new DisplayListModel(ui->monitores_box_);
+  ui->monitores_box_->setModel(display_list);
+  QObject::connect(
+      ui->monitores_box_,
+      (void (QComboBox::*)(int)) & QComboBox::currentIndexChanged, this,
+      [=](int screen_number) { emit moveToScreen(screen_number); });
 
   connect(ui->playPauseButton, &QPushButton::clicked,
           [=](bool checked) { emit setPlayState(checked); });
@@ -41,6 +51,3 @@ void PlayerControlsBox::setOutputVisibility(bool visible) {
 void PlayerControlsBox::setOutputFullscreen(bool fullscreen) {
   ui->toggleFullscreenButton->setChecked(fullscreen);
 }
-
-}  // namespace media
-}  // namespace mdptvp

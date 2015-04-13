@@ -23,11 +23,12 @@ class PlayerControlsBox : public QGroupBox {
   void setOutputVisibility(bool visible);
   void setOutputFullscreen(bool fullscreen);
 
-signals:
+ signals:
   void setPlayState(bool shouldPlay);
   void stopRequested();
   void outputVisibilityChanged(bool visible);
   void outputFullScreenChanged(bool fullscreen);
+  void moveToScreen(int screen_number);
 
  private:
   Ui::PlayerControlsBox *ui;
