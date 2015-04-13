@@ -7,7 +7,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 # Find the QtWidgets library.
 find_package(Qt5Widgets REQUIRED)
 
-find_package(LIBVLC REQUIRED)
+find_package(LIBVLCQT REQUIRED)
 
 # For YouCompleteMe support.
 set(CMAKE_EXPORT_COMPILE_COMMANDS "ON")
