@@ -10,78 +10,70 @@
 #include <QItemSelection>
 #include <QItemSelectionModel>
 
-namespace mdptvp {
+using mdptvp::filelist::FileListModel;
+using mdptvp::filelist::FileListWidget;
 
-FileListWidget::FileListWidget(QWidget *parent) :
-    QGroupBox(parent),
-    ui(new Ui::FileListWidget),
-    model(new FileListModel(this))
-{
-    ui->setupUi(this);
+FileListWidget::FileListWidget(QWidget *parent)
+    : QGroupBox(parent),
+      ui(new Ui::FileListWidget) {
+  ui->setupUi(this);
 
+  QObject::connect(ui->listView->selectionModel(),
+                   &QItemSelectionModel::currentRowChanged, this,
+                   &FileListWidget::current_row_changed);
+}
+
+FileListWidget::~FileListWidget() { delete ui; }
+
+void FileListWidget::setModel(FileListModel *model) {
     ui->listView->setModel(model);
-    QObject::connect(ui->listView->selectionModel(),
-                     &QItemSelectionModel::currentRowChanged,
-                     this,
-                     &FileListWidget::current_row_changed);
+    model_ = model;
 }
 
-FileListWidget::~FileListWidget()
-{
-    delete ui;
-}
+void FileListWidget::on_deleteFilesButton_clicked() {
+  QListView *view = ui->listView;
 
-void FileListWidget::on_deleteFilesButton_clicked()
-{
-    QListView* view = ui->listView;
-
-     view->setUpdatesEnabled(false);
-     QModelIndexList selections = view->selectionModel()->selectedIndexes();
-     if (!selections.isEmpty()) {
-         qSort(selections);
-         for(auto it = selections.constEnd(); it != selections.constBegin();) {
-             --it;
-             model->removeRow(it->row());
-         }
-     }
-     view->setUpdatesEnabled(true);
-}
-
-void FileListWidget::on_addFIleButton_clicked()
-{
-    QSettings settings;
-    QString dir = settings.value("lastUsedDirectory").toString();
-    QStringList filenames = QFileDialog::getOpenFileNames(this,tr("Escolha o arquivo"), dir);
-
-    if (filenames.isEmpty()) {
-        return;
+  view->setUpdatesEnabled(false);
+  QModelIndexList selections = view->selectionModel()->selectedIndexes();
+  if (!selections.isEmpty()) {
+    qSort(selections);
+    for (auto it = selections.constEnd(); it != selections.constBegin();) {
+      --it;
+      model_->removeRow(it->row());
     }
-
-    for (const QString& filename : filenames) {
-        model->insertFile(0, filename);
-    }
+  }
+  view->setUpdatesEnabled(true);
 }
 
-void FileListWidget::on_listView_activated(const QModelIndex &index)
-{
-    if (!index.isValid()) {
-        return;
-    }
+void FileListWidget::on_addFIleButton_clicked() {
+  QSettings settings;
+  QString dir = settings.value("lastUsedDirectory").toString();
+  QStringList filenames =
+      QFileDialog::getOpenFileNames(this, tr("Escolha o arquivo"), dir);
 
-    const QString& filePath = getIndexPath(index);
+  if (filenames.isEmpty()) {
+    return;
+  }
 
-    emit fileActivated(filePath);
+  for (const QString &filename : filenames) {
+    model_->insertFile(0, filename);
+  }
 }
 
+void FileListWidget::on_listView_activated(const QModelIndex &index) {
+  if (!index.isValid()) {
+    return;
+  }
 
-void FileListWidget::current_row_changed(const QModelIndex &current, const QModelIndex &previous)
-{
-    emit fileSelected(getIndexPath(current));
+  model_->activateItem(index);
 }
 
-const QString FileListWidget::getIndexPath(const QModelIndex &index)
-{
-    return ui->listView->model()->data(index, Qt::EditRole).toString();
+void FileListWidget::current_row_changed(const QModelIndex &current,
+                                         const QModelIndex &previous) {
+  emit fileSelected(getIndexPath(current));
 }
 
-} // namespace mdptvp
+const QString FileListWidget::getIndexPath(const QModelIndex &index) {
+  return model_->data(index, Qt::EditRole).toString();
+}
+

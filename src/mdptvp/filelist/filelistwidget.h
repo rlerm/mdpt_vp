@@ -10,6 +10,7 @@ class FileListWidget;
 class QItemSelection;
 
 namespace mdptvp {
+namespace filelist {
 
 class FileListModel;
 
@@ -21,8 +22,10 @@ public:
     explicit FileListWidget(QWidget *parent = 0);
     ~FileListWidget();
 
+    void setModel(FileListModel *file_list);
+
 signals:
-    void fileActivated(QString path);
+    // void fileActivated(QString path);
     void fileSelected(QString path);
 
 private slots:
@@ -34,11 +37,12 @@ private slots:
 
 private:
     Ui::FileListWidget *ui;
-    FileListModel *model;
+    FileListModel *model_;
 
     const QString getIndexPath(const QModelIndex &index);
 };
 
-}
+}  // namespace filelist
+}  // namespace mdptvp
 
 #endif // FILELISTWIDGET_H
