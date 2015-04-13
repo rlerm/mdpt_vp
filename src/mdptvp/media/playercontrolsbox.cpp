@@ -1,20 +1,27 @@
 #include "playercontrolsbox.h"
 #include "ui_playercontrolsbox.h"
 
+#include <QtWidgets/QPushButton>
+
 namespace mdptvp {
 namespace media {
 
 PlayerControlsBox::PlayerControlsBox(QWidget *parent)
     : QGroupBox(parent), ui(new Ui::PlayerControlsBox) {
   ui->setupUi(this);
+
+  connect(ui->playPauseButton, &QPushButton::clicked,
+          [=](bool checked) { emit setPlayState(checked); });
+  connect(ui->stopButton, &QPushButton::clicked,
+          [=](){ emit stopRequested(); });
+  connect(ui->hideOutputButton, &QPushButton::clicked,
+          [=](bool checked){ emit outputVisibilityChanged(!checked); });
+  connect(ui->toggleFullscreenButton, &QPushButton::clicked,
+          [=](bool checked) { emit outputFullScreenChanged(checked); });
 }
 
 PlayerControlsBox::~PlayerControlsBox() {
   delete ui;
-}
-
-void PlayerControlsBox::on_playPauseButton_clicked(bool checked) {
-  emit setPlayState(checked);
 }
 
 void PlayerControlsBox::stopMedia() {
@@ -33,18 +40,6 @@ void PlayerControlsBox::setOutputVisibility(bool visible) {
 
 void PlayerControlsBox::setOutputFullscreen(bool fullscreen) {
   ui->toggleFullscreenButton->setChecked(fullscreen);
-}
-
-void PlayerControlsBox::on_stopButton_clicked() {
-  emit stopRequested();
-}
-
-void PlayerControlsBox::on_hideOutputButton_clicked(bool checked) {
-  emit outputVisibilityChanged(!checked);
-}
-
-void PlayerControlsBox::on_toggleFullscreenButton_clicked(bool checked) {
-  emit outputFullScreenChanged(checked);
 }
 
 }  // namespace media

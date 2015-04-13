@@ -8,30 +8,39 @@
 #include <QSettings>
 #include <QFileDialog>
 #include <QItemSelection>
+#include <QListView>
 #include <QItemSelectionModel>
 
 using mdptvp::filelist::FileListModel;
 using mdptvp::filelist::FileListWidget;
 
 FileListWidget::FileListWidget(QWidget *parent)
-    : QGroupBox(parent),
-      ui(new Ui::FileListWidget) {
+    : QGroupBox(parent), ui(new Ui::FileListWidget) {
   ui->setupUi(this);
 
-  QObject::connect(ui->listView->selectionModel(),
-                   &QItemSelectionModel::currentRowChanged, this,
-                   &FileListWidget::current_row_changed);
+  QObject::connect(ui->list_view_, &QListView::activated, this,
+                   &FileListWidget::itemActivated);
 }
 
-FileListWidget::~FileListWidget() { delete ui; }
+FileListWidget::~FileListWidget() {
+  delete ui;
+}
 
 void FileListWidget::setModel(FileListModel *model) {
-    ui->listView->setModel(model);
-    model_ = model;
+  ui->list_view_->setModel(model);
+  model_ = model;
+
+  connect(ui->list_view_->selectionModel(),
+          &QItemSelectionModel::currentRowChanged,
+          [=](const QModelIndex &current, const QModelIndex &previous) {
+    if (current != previous) {
+      emit fileSelected(getIndexPath(current));
+    }
+  });
 }
 
 void FileListWidget::on_deleteFilesButton_clicked() {
-  QListView *view = ui->listView;
+  QListView *view = ui->list_view_;
 
   view->setUpdatesEnabled(false);
   QModelIndexList selections = view->selectionModel()->selectedIndexes();
@@ -60,7 +69,7 @@ void FileListWidget::on_addFIleButton_clicked() {
   }
 }
 
-void FileListWidget::on_listView_activated(const QModelIndex &index) {
+void FileListWidget::itemActivated(const QModelIndex &index) {
   if (!index.isValid()) {
     return;
   }
@@ -68,10 +77,10 @@ void FileListWidget::on_listView_activated(const QModelIndex &index) {
   model_->activateItem(index);
 }
 
-void FileListWidget::current_row_changed(const QModelIndex &current,
-                                         const QModelIndex &previous) {
-  emit fileSelected(getIndexPath(current));
-}
+// void FileListWidget::current_row_changed(const QModelIndex &current,
+//                                         const QModelIndex &previous) {
+//  emit fileSelected(getIndexPath(current));
+//}
 
 const QString FileListWidget::getIndexPath(const QModelIndex &index) {
   return model_->data(index, Qt::EditRole).toString();

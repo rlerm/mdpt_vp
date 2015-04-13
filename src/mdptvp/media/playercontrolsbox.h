@@ -1,5 +1,5 @@
-#ifndef MDPTVP_MEDIA_PLAYERCONTROLSBOX_H
-#define MDPTVP_MEDIA_PLAYERCONTROLSBOX_H
+#ifndef MDPTVP_MEDIA_PLAYERCONTROLSBOX_H_INCLUDED
+#define MDPTVP_MEDIA_PLAYERCONTROLSBOX_H_INCLUDED
 
 #include <QGroupBox>
 
@@ -29,15 +29,6 @@ signals:
   void outputVisibilityChanged(bool visible);
   void outputFullScreenChanged(bool fullscreen);
 
- private slots:
-  void on_playPauseButton_clicked(bool checked);
-
-  void on_stopButton_clicked();
-
-  void on_hideOutputButton_clicked(bool checked);
-
-  void on_toggleFullscreenButton_clicked(bool checked);
-
  private:
   Ui::PlayerControlsBox *ui;
 };
@@ -45,4 +36,4 @@ signals:
 }  // namespace media
 }  // namespace mdptvp
 
-#endif  // MDPTVP_MEDIA_PLAYERCONTROLSBOX_H
+#endif  // MDPTVP_MEDIA_PLAYERCONTROLSBOX_H_INCLUDED
