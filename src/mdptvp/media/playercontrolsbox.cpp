@@ -4,47 +4,48 @@
 namespace mdptvp {
 namespace media {
 
-PlayerControlsBox::PlayerControlsBox(QWidget *parent) :
-    QGroupBox(parent),
-    ui(new Ui::PlayerControlsBox)
-{
-    ui->setupUi(this);
+PlayerControlsBox::PlayerControlsBox(QWidget *parent)
+    : QGroupBox(parent), ui(new Ui::PlayerControlsBox) {
+  ui->setupUi(this);
 }
 
-PlayerControlsBox::~PlayerControlsBox()
-{
-    delete ui;
+PlayerControlsBox::~PlayerControlsBox() {
+  delete ui;
 }
 
-void PlayerControlsBox::on_playPauseButton_clicked(bool checked)
-{
-    emit setPlayState(checked);
+void PlayerControlsBox::on_playPauseButton_clicked(bool checked) {
+  emit setPlayState(checked);
 }
 
-void PlayerControlsBox::stopMedia()
-{
-    ui->playPauseButton->setChecked(false);
+void PlayerControlsBox::stopMedia() {
+  ui->playPauseButton->setChecked(false);
 }
 
-void PlayerControlsBox::mediaPlaying()
-{
-    ui->playPauseButton->setChecked(true);
+void PlayerControlsBox::mediaPlaying() {
+  ui->playPauseButton->setChecked(true);
 }
 
-void PlayerControlsBox::on_stopButton_clicked()
-{
-    emit stopRequested();
+void PlayerControlsBox::setOutputVisibility(bool visible) {
+  if (visible != !ui->hideOutputButton->isChecked()) {
+    ui->hideOutputButton->setChecked(!visible);
+  }
 }
 
-void PlayerControlsBox::on_hideOutputButton_clicked(bool checked)
-{
-    emit outputVisibilityChanged(checked);
+void PlayerControlsBox::setOutputFullscreen(bool fullscreen) {
+  ui->toggleFullscreenButton->setChecked(fullscreen);
 }
 
-void PlayerControlsBox::on_toggleFullscreenButton_clicked(bool checked)
-{
-    emit outputFullScreenChanged(checked);
+void PlayerControlsBox::on_stopButton_clicked() {
+  emit stopRequested();
 }
 
-} // namespace media
-} // namespace mdptvp
+void PlayerControlsBox::on_hideOutputButton_clicked(bool checked) {
+  emit outputVisibilityChanged(!checked);
+}
+
+void PlayerControlsBox::on_toggleFullscreenButton_clicked(bool checked) {
+  emit outputFullScreenChanged(checked);
+}
+
+}  // namespace media
+}  // namespace mdptvp

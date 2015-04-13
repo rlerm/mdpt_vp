@@ -22,8 +22,8 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
-     <widget class="mdptvp::FileListWidget" name="playList">
-      <property name="title">
+     <widget class="::mdptvp::filelist::FileListWidget" name="playlist_widget_" native="true">
+      <property name="title" stdset="0">
        <string>Lista de Exibição</string>
       </property>
      </widget>
@@ -31,7 +31,7 @@
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <widget class="mdptvp::media::PlayerControlsBox" name="controlsBox">
+       <widget class="::mdptvp::media::PlayerControlsBox" name="controls_box_">
         <property name="title">
          <string>Controles</string>
         </property>
@@ -78,7 +78,7 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QToolBar" name="toolBar_2">
+  <widget class="QToolBar" name="toolBar_2d">
    <property name="windowTitle">
     <string>toolBar_2</string>
    </property>
@@ -98,16 +98,15 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>mdptvp::FileListWidget</class>
-   <extends>QGroupBox</extends>
-   <header>mdptvp/filelist/filelistwidget.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>mdptvp::media::PlayerControlsBox</class>
+   <class>::mdptvp::media::PlayerControlsBox</class>
    <extends>QGroupBox</extends>
    <header>mdptvp/media/playercontrolsbox.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>::mdptvp::filelist::FileListWidget</class>
+   <extends>QWidget</extends>
+   <header>mdptvp/filelist/filelistwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
