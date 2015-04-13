@@ -1,8 +1,13 @@
 #include "mdptvp/media/videowidget.h"
 
+#include <QPalette>
+
 using ::mdptvp::media::VideoWidget;
 
 VideoWidget::VideoWidget(QWidget *parent) : QWidget(parent) {
+    setAutoFillBackground(true);
+    setPalette(QPalette(Qt::black));
+    setWindowTitle(tr("Saída de vídeo"));
 }
 
 WId VideoWidget::request() {
