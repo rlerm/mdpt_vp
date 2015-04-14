@@ -27,7 +27,7 @@ class PlayerCore : public QObject {
   ~PlayerCore();
 
   VlcMediaPlayer *player() const;
-  QWidget *videoOutput() const;
+  VideoWidget *videoOutput() const;
   FileList *newFileList(QObject *parent = nullptr);
 
  public slots:

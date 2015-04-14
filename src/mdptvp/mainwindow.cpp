@@ -2,18 +2,21 @@
 #include "ui_mainwindow.h"
 
 #include <QObject>
+#include <QDebug>
 
 #include <vlc-qt/MediaPlayer.h>
 #include <vlc-qt/Media.h>
 
 #include "mdptvp/filelist/filelist.h"
 #include "mdptvp/filelist/filelistmodel.h"
+#include "mdptvp/gui/util.h"
 #include "mdptvp/media/playercontrolsbox.h"
 #include "mdptvp/media/playercore.h"
-#include "mdptvp/gui/util.h"
+#include "mdptvp/media/videowidget.h"
 
 using mdptvp::MainWindow;
 using mdptvp::media::PlayerCore;
+using mdptvp::media::VideoWidget;
 using mdptvp::filelist::FileListModel;
 using mdptvp::filelist::FileList;
 using mdptvp::media::PlayerControlsBox;
@@ -57,6 +60,10 @@ void MainWindow::connectSignals() {
     gui::moveToScreen(engine_->videoOutput(), new_screen);
   });
 
+  QObject::connect(engine_->videoOutput(), &VideoWidget::visibilityChanged,
+                   ui->controls_box_,
+                   &PlayerControlsBox::setOutputVisibility);
+
   QObject::connect(ui->controls_box_,
                    &PlayerControlsBox::outputFullScreenChanged, this,
                    &MainWindow::setOutputFullscreen);
@@ -98,5 +105,7 @@ void MainWindow::setOutputFullscreen(bool fullscreen) {
     states = states & ~Qt::WindowFullScreen;
   }
   engine_->videoOutput()->setWindowState(states);
+
+  Q_ASSERT(engine_->videoOutput()->isFullScreen() == fullscreen);
 }
 

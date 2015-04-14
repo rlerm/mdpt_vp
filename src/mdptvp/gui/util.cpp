@@ -1,8 +1,9 @@
 #include "mdptvp/gui/util.h"
 
-#include <QtWidgets/QWidget>
+#include <Qt>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDesktopWidget>
+#include <QtWidgets/QWidget>
 
 namespace gui = ::mdptvp::gui;
 

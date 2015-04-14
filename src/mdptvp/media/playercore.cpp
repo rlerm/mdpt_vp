@@ -36,7 +36,7 @@ VlcMediaPlayer *PlayerCore::player() const {
   return player_;
 }
 
-QWidget *PlayerCore::videoOutput() const {
+VideoWidget *PlayerCore::videoOutput() const {
   return video_output_;
 }
 

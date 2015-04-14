@@ -7,13 +7,12 @@
 class VlcMedia;
 namespace Ui {
 class MainWindow;
-} // namespace Ui
+}  // namespace Ui
 namespace mdptvp {
 namespace media {
 class PlayerCore;
-} // namespace media
-} // namespace mdptvp
-
+}  // namespace media
+}  // namespace mdptvp
 
 namespace mdptvp {
 class MainWindow : public QMainWindow {

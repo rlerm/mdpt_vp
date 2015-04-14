@@ -1,6 +1,7 @@
 #include "mdptvp/media/videowidget.h"
 
 #include <QPalette>
+#include <QDebug>
 
 using ::mdptvp::media::VideoWidget;
 
@@ -8,6 +9,7 @@ VideoWidget::VideoWidget(QWidget *parent) : QWidget(parent) {
     setAutoFillBackground(true);
     setPalette(QPalette(Qt::black));
     setWindowTitle(tr("Saída de vídeo"));
+    setWindowFlags(Qt::Tool | Qt::Dialog);
 }
 
 WId VideoWidget::request() {
@@ -29,3 +31,13 @@ void VideoWidget::setFullscreen(bool fullscreen) {
   }
 }
 
+void VideoWidget::hideEvent(QHideEvent *) {
+  emit visibilityChanged(false);
+}
+
+void VideoWidget::showEvent(QShowEvent *) {
+  show();
+  activateWindow();
+
+  emit visibilityChanged(true);
+}
