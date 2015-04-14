@@ -3,6 +3,7 @@
 
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QComboBox>
+#include <QtCore/QDebug>
 
 #include "mdptvp/gui/displaylistmodel.h"
 
@@ -18,16 +19,16 @@ PlayerControlsBox::PlayerControlsBox(QWidget *parent)
   QObject::connect(
       ui->monitores_box_,
       (void (QComboBox::*)(int)) & QComboBox::currentIndexChanged, this,
-      [=](int screen_number) { emit moveToScreen(screen_number); });
+      [this](int screen_number) { emit moveToScreen(screen_number); });
 
   connect(ui->playPauseButton, &QPushButton::clicked,
-          [=](bool checked) { emit setPlayState(checked); });
+          [this](bool checked) { emit setPlayState(checked); });
   connect(ui->stopButton, &QPushButton::clicked,
-          [=](){ emit stopRequested(); });
+          [this]() { emit stopRequested(); });
   connect(ui->hideOutputButton, &QPushButton::clicked,
-          [=](bool checked){ emit outputVisibilityChanged(!checked); });
+          [this](bool checked) { emit outputVisibilityChanged(!checked); });
   connect(ui->toggleFullscreenButton, &QPushButton::clicked,
-          [=](bool checked) { emit outputFullScreenChanged(checked); });
+          [this](bool checked) { emit outputFullScreenChanged(checked); });
 }
 
 PlayerControlsBox::~PlayerControlsBox() {
@@ -43,6 +44,7 @@ void PlayerControlsBox::mediaPlaying() {
 }
 
 void PlayerControlsBox::setOutputVisibility(bool visible) {
+  qDebug() << "output visibility changed";
   if (visible != !ui->hideOutputButton->isChecked()) {
     ui->hideOutputButton->setChecked(!visible);
   }

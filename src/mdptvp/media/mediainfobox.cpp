@@ -24,7 +24,7 @@ void MediaInfoBox::setPlayer(VlcMediaPlayer *player) {
 
     player->audio()->setVolume(ui->volume_widget_->volume());
     connect(ui->volume_widget_, &VlcWidgetVolumeSlider::newVolume,
-            [=](int volume) { player->audio()->setVolume(volume); });
+            [player](int volume) { player->audio()->setVolume(volume); });
 
     qDebug() << "Initial audio volume: " << player->audio()->volume();
 }
