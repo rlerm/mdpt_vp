@@ -46,7 +46,16 @@ add_library(libmdptvp STATIC
     util/text.cpp
 )    
 
-target_link_libraries(libmdptvp Qt5::Widgets ${LIBVLCQT_LIBRARY} ${LIBVLCQT_WIDGETS_LIBRARY})
+target_link_libraries(libmdptvp 
+    Qt5::Core
+    Qt5::Widgets 
+    ${LIBVLCQT_LIBRARY} 
+    ${LIBVLCQT_WIDGETS_LIBRARY} 
+)
+
+add_dependencies(libmdptvp
+    resources
+)
 
 target_include_directories(libmdptvp PUBLIC 
     ${CMAKE_SOURCE_DIR}/src

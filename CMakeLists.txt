@@ -15,6 +15,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS "ON")
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 # Enable C++11 goodness.
@@ -24,6 +25,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 add_subdirectory(src)
 
-add_executable(mdpt_vp app/main.cpp)
+add_executable(mdpt_vp app/main.cpp resources/resources.qrc)
 target_link_libraries(mdpt_vp libmdptvp)
 add_dependencies(mdpt_vp libmdptvp)
