@@ -22,6 +22,11 @@ class MediaInfoBox : public QGroupBox {
 
  private:
   Ui::MediaInfoBox *ui;
+  VlcMediaPlayer *player_;
+
+ private slots:
+  void updateVolumeLabel(int volume);
+  void mediaChanged();
 };
 
 }  // namespace media
