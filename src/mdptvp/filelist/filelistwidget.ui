@@ -24,12 +24,20 @@
        <property name="text">
         <string>Adicionar</string>
        </property>
+       <property name="icon">
+        <iconset resource="../../../resources/resources.qrc">
+         <normaloff>:/icons/add</normaloff>:/icons/add</iconset>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="deleteFilesButton">
        <property name="text">
         <string>Remover</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../../resources/resources.qrc">
+         <normaloff>:/icons/delete</normaloff>:/icons/delete</iconset>
        </property>
       </widget>
      </item>
@@ -56,6 +64,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../resources/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

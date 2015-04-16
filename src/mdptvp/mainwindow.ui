@@ -110,6 +110,10 @@
    </attribute>
   </widget>
   <action name="actionSair">
+   <property name="icon">
+    <iconset resource="../../resources/resources.qrc">
+     <normaloff>:/icons/exit</normaloff>:/icons/exit</iconset>
+   </property>
    <property name="text">
     <string>Sair</string>
    </property>
@@ -135,7 +139,9 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../../resources/resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>actionSair</sender>
