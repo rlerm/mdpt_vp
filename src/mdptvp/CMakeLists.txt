@@ -41,6 +41,9 @@ add_library(libmdptvp STATIC
     gui/displaylistmodel.cpp
     gui/util.h
     gui/util.cpp
+
+    util/text.h
+    util/text.cpp
 )    
 
 target_link_libraries(libmdptvp Qt5::Widgets ${LIBVLCQT_LIBRARY} ${LIBVLCQT_WIDGETS_LIBRARY})
