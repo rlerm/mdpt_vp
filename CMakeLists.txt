@@ -1,4 +1,5 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.0)
+
 project(mdpt_vp)
 
 # Add our custom library finder directory.
@@ -26,5 +27,5 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 add_subdirectory(src)
 
 add_executable(mdpt_vp app/main.cpp resources/resources.qrc)
-target_link_libraries(mdpt_vp libmdptvp)
-add_dependencies(mdpt_vp libmdptvp)
+target_link_libraries(mdpt_vp libmdptvp Qt5::Core)
+# add_dependencies(mdpt_vp libmdptvp)

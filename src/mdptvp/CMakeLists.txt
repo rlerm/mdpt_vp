@@ -3,47 +3,37 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/src
 )
 
-qt5_wrap_ui(libmdptvp_ui_moc 
-    mainwindow.ui 
-    filelist/filelistwidget.ui
-    media/playercontrolsbox.ui
-    media/mediainfobox.ui
-)
-
-set(libmdptvp_HEADERS 
-    mainwindow.h 
-    filelist/filelistmodel.h 
-    filelist/filelistwidget.h
-    media/playercontrolsbox.h
-)
-
 add_library(libmdptvp STATIC
     mainwindow.cpp
-    filelist/filelistwidget.cpp
-    filelist/filelistmodel.cpp
-    media/playercontrolsbox.cpp
-    ${libmdptvp_HEADERS}
-    ${libmdptvp_ui_moc}
+    mainwindow.h 
+    mainwindow.ui 
 
-    filelist/filelist.h
     filelist/filelist.cpp
-    filelist/filelistmodel.h
+    filelist/filelist.h
     filelist/filelistmodel.cpp
+    filelist/filelistmodel.h 
+    filelist/filelistwidget.cpp
+    filelist/filelistwidget.h
+    filelist/filelistwidget.ui
 
-    media/playercore.h
-    media/playercore.cpp
-    media/videowidget.h
-    media/videowidget.cpp
-    media/mediainfobox.h
-    media/mediainfobox.cpp
-
-    gui/displaylistmodel.h
     gui/displaylistmodel.cpp
-    gui/util.h
+    gui/displaylistmodel.h
     gui/util.cpp
+    gui/util.h
 
-    util/text.h
+    media/mediainfobox.cpp
+    media/mediainfobox.h
+    media/mediainfobox.ui
+    media/playercontrolsbox.cpp
+    media/playercontrolsbox.h
+    media/playercontrolsbox.ui
+    media/playercore.cpp
+    media/playercore.h
+    media/videowidget.cpp
+    media/videowidget.h
+
     util/text.cpp
+    util/text.h
 )    
 
 target_link_libraries(libmdptvp 
@@ -53,9 +43,9 @@ target_link_libraries(libmdptvp
     ${LIBVLCQT_WIDGETS_LIBRARY} 
 )
 
-add_dependencies(libmdptvp
-    resources
-)
+# add_dependencies(libmdptvp
+    # resources
+# )
 
 target_include_directories(libmdptvp PUBLIC 
     ${CMAKE_SOURCE_DIR}/src
