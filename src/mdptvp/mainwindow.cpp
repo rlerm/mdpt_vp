@@ -1,11 +1,11 @@
 #include "mdptvp/mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <QObject>
-#include <QDebug>
+#include <QtCore/QObject>
 
-#include <vlc-qt/MediaPlayer.h>
+#include <vlc-qt/Enums.h>
 #include <vlc-qt/Media.h>
+#include <vlc-qt/MediaPlayer.h>
 
 #include "mdptvp/filelist/filelist.h"
 #include "mdptvp/filelist/filelistmodel.h"
@@ -37,15 +37,21 @@ MainWindow::MainWindow(QWidget *parent)
                    &PlayerCore::playMedia);
 
   connectSignals();
+
+  ui->main_toolbar_->addAction(ui->playlist_widget_->getAddFileAction());
+  ui->main_toolbar_->addAction(ui->playlist_widget_->getRemoveFileAction());
+
+  ui->controls_toolbar_->addAction(ui->controls_box_->playPauseAction());
+  ui->controls_toolbar_->addAction(ui->controls_box_->stopAction());
 }
 
 void MainWindow::connectSignals() {
-  QObject::connect(engine_->player(), &VlcMediaPlayer::playing,
-                   ui->controls_box_, &PlayerControlsBox::mediaPlaying);
-  QObject::connect(engine_->player(), &VlcMediaPlayer::stopped,
-                   ui->controls_box_, &PlayerControlsBox::stopMedia);
+  connect(engine_->player(), &VlcMediaPlayer::stateChanged, [this]() {
+    ui->controls_box_->setPlayState(engine_->player()->state() ==
+                                    Vlc::State::Playing);
+  });
 
-  QObject::connect(ui->controls_box_, &PlayerControlsBox::setPlayState, this,
+  QObject::connect(ui->controls_box_, &PlayerControlsBox::playStateChanged, this,
                    &MainWindow::setPlayState);
 
   QObject::connect(ui->controls_box_,
@@ -87,6 +93,9 @@ void MainWindow::setPlayState(bool should_play) {
   } else {
     engine_->player()->pause();
   }
+
+  ui->controls_box_->setPlayState(engine_->player()->state() ==
+                                  Vlc::State::Playing);
 }
 
 void MainWindow::setOutputVisibility(bool visible) {

@@ -43,10 +43,6 @@ target_link_libraries(libmdptvp
     ${LIBVLCQT_WIDGETS_LIBRARY} 
 )
 
-# add_dependencies(libmdptvp
-    # resources
-# )
-
 target_include_directories(libmdptvp PUBLIC 
     ${CMAKE_SOURCE_DIR}/src
 )

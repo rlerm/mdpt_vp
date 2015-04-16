@@ -7,6 +7,7 @@ namespace Ui {
 class FileListWidget;
 }
 
+class QAction;
 class QItemSelection;
 
 namespace mdptvp {
@@ -23,16 +24,24 @@ class FileListWidget : public QGroupBox {
 
   void setModel(FileListModel *file_list);
 
+  QAction *getAddFileAction() const;
+  QAction *getRemoveFileAction() const;
+
  private slots:
   void on_deleteFilesButton_clicked();
   void on_addFIleButton_clicked();
   void itemActivated(const QModelIndex &index);
 
  private:
-  Ui::FileListWidget *ui;
-  FileListModel *model_;
+  static const char* ADD_ICON_PATH;
+  static const char* REMOVE_ICON_PATH;
 
   const QString getIndexPath(const QModelIndex &index);
+
+  Ui::FileListWidget *ui;
+  FileListModel *model_;
+  QAction *add_file_action_;
+  QAction *remove_file_action_;
 };
 
 }  // namespace filelist

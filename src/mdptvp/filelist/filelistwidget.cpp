@@ -3,23 +3,36 @@
 
 #include "filelistmodel.h"
 
-#include <QListView>
-#include <QModelIndex>
-#include <QSettings>
-#include <QFileDialog>
-#include <QItemSelection>
-#include <QListView>
-#include <QItemSelectionModel>
+#include <QtCore/QItemSelection>
+#include <QtCore/QItemSelectionModel>
+#include <QtCore/QModelIndex>
+#include <QtCore/QSettings>
+#include <QtWidgets/QAction>
+#include <QtWidgets/QFileDialog>
+#include <QtWidgets/QListView>
+#include <QtWidgets/QListView>
+
 
 using mdptvp::filelist::FileListModel;
 using mdptvp::filelist::FileListWidget;
 
+const char* FileListWidget::ADD_ICON_PATH = ":/icons/add";
+const char* FileListWidget::REMOVE_ICON_PATH = ":/icons/delete";
+
 FileListWidget::FileListWidget(QWidget *parent)
-    : QGroupBox(parent), ui(new Ui::FileListWidget) {
+    : QGroupBox(parent),
+      ui(new Ui::FileListWidget),
+      add_file_action_(
+          new QAction(QIcon(ADD_ICON_PATH), tr("&Adicionar arquivo"), this)),
+      remove_file_action_(
+          new QAction(QIcon(REMOVE_ICON_PATH), tr("Remover arquivo"), this)) {
   ui->setupUi(this);
 
   QObject::connect(ui->list_view_, &QListView::activated, this,
                    &FileListWidget::itemActivated);
+
+  connect(add_file_action_, &QAction::triggered,
+          [this](bool) { on_addFIleButton_clicked(); });
 }
 
 FileListWidget::~FileListWidget() {
@@ -73,3 +86,9 @@ const QString FileListWidget::getIndexPath(const QModelIndex &index) {
   return model_->data(index, Qt::EditRole).toString();
 }
 
+QAction *FileListWidget::getAddFileAction() const {
+  return add_file_action_;
+}
+QAction *FileListWidget::getRemoveFileAction() const {
+    return remove_file_action_;
+}
