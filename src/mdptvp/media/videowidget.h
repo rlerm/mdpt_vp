@@ -1,13 +1,15 @@
 #ifndef MDPTVP_MEDIA_WIDEOWIDGET_H_INCLUDED
 #define MDPTVP_MEDIA_WIDEOWIDGET_H_INCLUDED
 
-#include <QWidget>
+#include <QtCore/QSettings>
+#include <QtWidgets/QWidget>
 
 #include <vlc-qt/VideoDelegate.h>
 
 class QCloseEvent;
 class QHideEvent;
 class QShowEvent;
+class QSettings;
 
 namespace mdptvp {
 namespace media {
@@ -29,6 +31,16 @@ class VideoWidget : public QWidget, public VlcVideoDelegate {
  private:
   void hideEvent(QHideEvent *event) override;
   void showEvent(QShowEvent *event) override;
+
+  /**
+   * If a previously used output is defined, moves the window there.
+   * If not, nothing happens.
+   */
+  void restoreSavedPosition();
+
+  QSettings settings_;
+
+  static const char* const MONITOR_KEY;
 };
 
 }  // namespace media
