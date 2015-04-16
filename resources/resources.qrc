@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file alias="play">icons/player_play.png</file>
+        <file alias="add">icons/edit_add.png</file>
+        <file alias="delete">icons/editdelete.png</file>
+        <file alias="stop">icons/player_stop.png</file>
+        <file alias="fullscreen">icons/window_fullscreen.png</file>
+        <file alias="hidescreen">icons/window_suppressed.png</file>
+        <file alias="exit">icons/application_exit.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file alias="mdpt">images/mdpt.png</file>
+    </qresource>
+</RCC>
