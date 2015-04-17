@@ -7,7 +7,6 @@
 #include <QtCore/QItemSelection>
 #include <QtCore/QItemSelectionModel>
 #include <QtCore/QModelIndex>
-#include <QtCore/QSettings>
 #include <QtWidgets/QAction>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QListView>
@@ -63,9 +62,8 @@ void FileListWidget::on_deleteFilesButton_clicked() {
 }
 
 void FileListWidget::on_addFIleButton_clicked() {
-  QString dir = settings_.value(LAST_DIRECTORY_KEY).toString();
-  QStringList filenames =
-      QFileDialog::getOpenFileNames(this, tr("Escolha o arquivo"), dir);
+  QList<QString> filenames = QFileDialog::getOpenFileNames(
+      this, tr("Escolha o arquivo"), getDefaultOpenDirectory().absolutePath());
 
   if (filenames.isEmpty()) {
     return;
@@ -76,7 +74,7 @@ void FileListWidget::on_addFIleButton_clicked() {
   }
 
   settings_.setValue(LAST_DIRECTORY_KEY,
-                     QFileInfo(filenames.first()).absolutePath());
+                     QVariant(QFileInfo(filenames.first()).absolutePath()));
 }
 
 void FileListWidget::itemActivated(const QModelIndex &index) {
@@ -97,4 +95,18 @@ QAction *FileListWidget::getAddFileAction() const {
 
 QAction *FileListWidget::getRemoveFileAction() const {
   return remove_file_action_;
+}
+
+QDir FileListWidget::getDefaultOpenDirectory() {
+  if (settings_.contains(LAST_DIRECTORY_KEY)) {
+    QDir dir(settings_.value(LAST_DIRECTORY_KEY).toString());
+    if (dir.exists()) {
+      return dir;
+    }
+  }
+#ifdef Q_OS_WIN32
+  return QDir::homePath() + "/Desktop/";
+#else
+  return QDir::homePath();
+#endif
 }

@@ -1,6 +1,7 @@
 #ifndef MDPT_FILELIST_FILELISTWIDGET_H_INCLUDED
 #define MDPT_FILELIST_FILELISTWIDGET_H_INCLUDED
 
+#include <QtCore/QDir>
 #include <QtCore/QSettings>
 #include <QtWidgets/QGroupBox>
 
@@ -38,6 +39,7 @@ class FileListWidget : public QGroupBox {
   static const char *REMOVE_ICON_PATH;
   static const char *LAST_DIRECTORY_KEY;
 
+  QDir getDefaultOpenDirectory();
   const QString getIndexPath(const QModelIndex &index);
 
   QSettings settings_;
