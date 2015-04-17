@@ -5,13 +5,13 @@ include_directories(
 
 add_library(libmdptvp STATIC
     mainwindow.cpp
-    mainwindow.h 
-    mainwindow.ui 
+    mainwindow.h
+    mainwindow.ui
 
     filelist/filelist.cpp
     filelist/filelist.h
     filelist/filelistmodel.cpp
-    filelist/filelistmodel.h 
+    filelist/filelistmodel.h
     filelist/filelistwidget.cpp
     filelist/filelistwidget.h
     filelist/filelistwidget.ui
@@ -37,16 +37,17 @@ add_library(libmdptvp STATIC
     util/gui.h
     util/text.cpp
     util/text.h
-)    
-
-target_link_libraries(libmdptvp 
-    Qt5::Core
-    Qt5::Gui
-    Qt5::Widgets 
-    ${LIBVLCQT_LIBRARY} 
-    ${LIBVLCQT_WIDGETS_LIBRARY} 
 )
 
-target_include_directories(libmdptvp PUBLIC 
+target_link_libraries(libmdptvp
+    Qt5::Core
+    Qt5::Gui
+    Qt5::Widgets
+    ${LIBVLCQT_LIBRARY}
+    ${LIBVLCQT_WIDGETS_LIBRARY}
+)
+
+target_include_directories(libmdptvp PUBLIC
     ${CMAKE_SOURCE_DIR}/src
+    ${LIBVLCQT_INCLUDE_DIR}
 )

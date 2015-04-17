@@ -16,6 +16,8 @@ find_package(LIBVLCQT REQUIRED)
 # For YouCompleteMe support.
 set(CMAKE_EXPORT_COMPILE_COMMANDS "ON")
 
+include(InstallRequiredSystemLibraries)
+
 # Instruct CMake to run moc automatically when needed.
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -31,8 +33,11 @@ add_subdirectory(src)
 
 # Define the main executable.
 add_executable(mdpt_vp
-    app/main.cpp 
+	WIN32
+    app/main.cpp
     resources/resources.qrc)
-target_link_libraries(mdpt_vp 
+target_link_libraries(mdpt_vp
     libmdptvp
-    Qt5::Core)
+    Qt5::Core
+    ${LIBVLCQT_LIBRARY}
+    ${LIBVLCQT_WIDGETS_LIBRARY})

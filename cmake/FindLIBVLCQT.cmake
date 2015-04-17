@@ -38,20 +38,25 @@ FIND_PATH(LIBVLCQT_INCLUDE_DIR vlc-qt/Instance.h
     "/usr/local/include"
     "/usr/local/include/vlc-qt"
     c:/msys/local/include
+    "C:/Program Files (x86)/vlc-qt/include"
     NO_DEFAULT_PATH
 )
 FIND_PATH(LIBVLCQT_INCLUDE_DIR Instance.h)
 
 # Library
-FIND_LIBRARY(LIBVLCQT_LIBRARY NAMES vlc-qt PATHS
+set(LIBVLCQT_LIB_SEARCH_PATH
     "$ENV{LIBVLCQT_LIBRARY_PATH}"
     "$ENV{LIB_DIR}/lib"
     c:/msys/local/lib
-    NO_DEFAULT_PATH
+    "C:/Program Files (x86)/vlc-qt/lib"
+    # NO_DEFAULT_PATH
 )
-FIND_LIBRARY(LIBVLCQT_LIBRARY NAMES vlc-qt)
-FIND_LIBRARY(LIBVLCQT_WIDGETS_LIBRARY NAMES vlc-qt-widgets)
-FIND_LIBRARY(LIBVLCQT_QML_LIBRARY NAMES vlc-qt-qml)
+find_library(LIBVLCQT_LIBRARY NAMES vlc-qt
+    PATHS ${LIBVLCQT_LIB_SEARCH_PATH})
+find_library(LIBVLCQT_WIDGETS_LIBRARY NAMES vlc-qt-widgets
+    PATHS ${LIBVLCQT_LIB_SEARCH_PATH})
+find_library(LIBVLCQT_QML_LIBRARY NAMES vlc-qt-qml
+    PATHS ${LIBVLCQT_LIB_SEARCH_PATH})
 
 IF (LIBVLCQT_INCLUDE_DIR AND LIBVLCQT_LIBRARY)
     SET(LIBVLCQT_FOUND TRUE)
