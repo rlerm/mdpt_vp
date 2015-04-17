@@ -8,12 +8,10 @@
 
 #include "mdptvp/filelist/filelist.h"
 #include "mdptvp/filelist/filelistmodel.h"
-#include "mdptvp/gui/util.h"
 #include "mdptvp/media/playercontrolsbox.h"
 #include "mdptvp/media/playercore.h"
 #include "mdptvp/media/videowidget.h"
 
-namespace gui = mdptvp::gui;
 using mdptvp::MainWindow;
 using mdptvp::filelist::FileList;
 using mdptvp::filelist::FileListModel;

@@ -1,13 +1,13 @@
-#include "mdptvp/gui/util.h"
+#include "mdptvp/util/gui.h"
 
 #include <Qt>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDesktopWidget>
 #include <QtWidgets/QWidget>
 
-namespace gui = ::mdptvp::gui;
+namespace util = ::mdptvp::util;
 
-void gui::moveToScreen(QWidget* widget, int screen_number) {
+void util::moveToScreen(QWidget* widget, int screen_number) {
   QDesktopWidget* desktop = QApplication::desktop();
   if (screen_number >= desktop->screenCount()) {
     screen_number = -1;

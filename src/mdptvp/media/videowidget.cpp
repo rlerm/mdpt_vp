@@ -5,10 +5,10 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDesktopWidget>
 
-#include "mdptvp/gui/util.h"
+#include "mdptvp/util/gui.h"
 
 using ::mdptvp::media::VideoWidget;
-namespace gui = ::mdptvp::gui;
+namespace util = ::mdptvp::util;
 
 const char* const VideoWidget::MONITOR_KEY = "last_used_monitor";
 
@@ -58,6 +58,6 @@ void VideoWidget::showEvent(QShowEvent *) {
 void VideoWidget::restoreSavedPosition() {
   QVariant saved_value = settings_.value(MONITOR_KEY);
   if (saved_value.isValid()) {
-    gui::moveToScreen(this, saved_value.toInt());
+    util::moveToScreen(this, saved_value.toInt());
   }
 }

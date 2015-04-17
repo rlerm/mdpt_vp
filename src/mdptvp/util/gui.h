@@ -1,10 +1,10 @@
-#ifndef MDPTVP_GUI_UTIL_H_INCLUDED
-#define MDPTVP_GUI_UTIL_H_INCLUDED
+#ifndef MDPTVP_UTIL_GUI_H_INCLUDED
+#define MDPTVP_UTIL_GUI_H_INCLUDED
 
 class QWidget;
 
 namespace mdptvp {
-namespace gui {
+namespace util {
 
 
 /**
@@ -15,7 +15,7 @@ namespace gui {
 void moveToScreen(QWidget* widget, int screen_number);
 
 
-} // namespace gui
+} // namespace util
 } // namespace mdptvp
 
-#endif // MDPTVP_GUI_UTIL_H_INCLUDED
+#endif // MDPTVP_UTIL_GUI_H_INCLUDED

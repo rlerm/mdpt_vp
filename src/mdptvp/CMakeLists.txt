@@ -18,8 +18,6 @@ add_library(libmdptvp STATIC
 
     gui/displaylistmodel.cpp
     gui/displaylistmodel.h
-    gui/util.cpp
-    gui/util.h
 
     media/mediainfobox.cpp
     media/mediainfobox.h
@@ -32,6 +30,8 @@ add_library(libmdptvp STATIC
     media/videowidget.cpp
     media/videowidget.h
 
+    util/gui.cpp
+    util/gui.h
     util/text.cpp
     util/text.h
 )    

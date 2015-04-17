@@ -12,10 +12,11 @@
 #include <vlc-qt/MediaPlayer.h>
 
 #include "mdptvp/gui/displaylistmodel.h"
-#include "mdptvp/gui/util.h"
+#include "mdptvp/util/gui.h"
 #include "mdptvp/media/playercore.h"
 #include "mdptvp/media/videowidget.h"
 
+namespace util = ::mdptvp::util;
 using ::mdptvp::gui::DisplayListModel;
 using ::mdptvp::media::PlayerControlsBox;
 
@@ -76,7 +77,7 @@ void PlayerControlsBox::setEngine(PlayerCore *engine) {
   connect(ui->monitores_box_,
           (void (QComboBox::*)(int)) & QComboBox::currentIndexChanged,
           [this](int new_screen) {
-    gui::moveToScreen(engine_->videoOutput(), new_screen);
+    util::moveToScreen(engine_->videoOutput(), new_screen);
   });
 }
 
