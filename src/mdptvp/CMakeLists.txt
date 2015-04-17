@@ -18,6 +18,9 @@ add_library(libmdptvp STATIC
 
     gui/displaylistmodel.cpp
     gui/displaylistmodel.h
+    gui/aboutdialog.cpp
+    gui/aboutdialog.h
+    gui/aboutdialog.ui
 
     media/mediainfobox.cpp
     media/mediainfobox.h

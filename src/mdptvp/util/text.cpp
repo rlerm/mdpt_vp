@@ -1,10 +1,12 @@
 #include "mdptvp/util/text.h"
 
 #include <QtCore/QChar>
+#include <QtCore/QFile>
 #include <QtCore/QString>
 #include <QtCore/QStringBuilder>
 #include <QtCore/QTime>
 #include <QtCore/QVector>
+#include <QtCore/QTextStream>
 
 namespace util = ::mdptvp::util;
 
@@ -39,4 +41,15 @@ QString util::formatBytes(int bytes) {
   }
   return QString::number(readable, 'f', 2) %
       SI_MULTIPLIERS.at(multiplier) % "B";
+}
+
+QString util::readFile(const QString &path, QTextCodec *codec) {
+    QFile file(path);
+    if(!file.open(QFile::ReadOnly | QFile::Text)) {
+        return "";
+    }
+
+    QTextStream stream(&file);
+    stream.setCodec(codec);
+    return stream.readAll();
 }

@@ -11,4 +11,7 @@
     <qresource prefix="/images">
         <file alias="mdpt">images/mdpt.png</file>
     </qresource>
+    <qresource prefix="/text">
+        <file alias="about">text/about.html</file>
+    </qresource>
 </RCC>

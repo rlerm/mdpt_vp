@@ -2,12 +2,14 @@
 #include "ui_mainwindow.h"
 
 #include <QtCore/QObject>
+#include <QtWidgets/QAction>
 
 #include <vlc-qt/Media.h>
 #include <vlc-qt/MediaPlayer.h>
 
 #include "mdptvp/filelist/filelist.h"
 #include "mdptvp/filelist/filelistmodel.h"
+#include "mdptvp/gui/aboutdialog.h"
 #include "mdptvp/media/playercontrolsbox.h"
 #include "mdptvp/media/playercore.h"
 #include "mdptvp/media/videowidget.h"
@@ -15,6 +17,7 @@
 using mdptvp::MainWindow;
 using mdptvp::filelist::FileList;
 using mdptvp::filelist::FileListModel;
+using mdptvp::gui::AboutDialog;
 using mdptvp::media::PlayerControlsBox;
 using mdptvp::media::PlayerCore;
 using mdptvp::media::VideoWidget;
@@ -44,6 +47,11 @@ MainWindow::MainWindow(QWidget *parent)
 
   ui->controls_toolbar_->addAction(ui->controls_box_->playPauseAction());
   ui->controls_toolbar_->addAction(ui->controls_box_->stopAction());
+
+  connect(ui->action_about_, &QAction::triggered, [this](bool) {
+    std::unique_ptr<AboutDialog> about(new AboutDialog);
+    about->exec();
+  });
 }
 
 MainWindow::~MainWindow() {

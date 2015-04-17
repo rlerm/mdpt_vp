@@ -76,7 +76,14 @@
     </property>
     <addaction name="action_sair_"/>
    </widget>
+   <widget class="QMenu" name="menu_about_">
+    <property name="title">
+     <string>Sobre</string>
+    </property>
+    <addaction name="action_about_"/>
+   </widget>
    <addaction name="menu_arquivo_"/>
+   <addaction name="menu_about_"/>
   </widget>
   <widget class="QToolBar" name="main_toolbar_">
    <attribute name="toolBarArea">
@@ -116,6 +123,11 @@
    </property>
    <property name="text">
     <string>Sair</string>
+   </property>
+  </action>
+  <action name="action_about_">
+   <property name="text">
+    <string>Sobre o MDPT Video Player</string>
    </property>
   </action>
  </widget>
