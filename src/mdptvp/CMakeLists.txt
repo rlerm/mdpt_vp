@@ -38,6 +38,7 @@ add_library(libmdptvp STATIC
 
 target_link_libraries(libmdptvp 
     Qt5::Core
+    Qt5::Gui
     Qt5::Widgets 
     ${LIBVLCQT_LIBRARY} 
     ${LIBVLCQT_WIDGETS_LIBRARY} 
