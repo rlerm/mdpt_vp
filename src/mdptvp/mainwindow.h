@@ -1,6 +1,8 @@
 #ifndef MDPTVP_MAINWINDOW_H_INCLUDED
 #define MDPTVP_MAINWINDOW_H_INCLUDED
 
+#include <memory>
+
 #include <QMainWindow>
 
 // Forward-declarations.
@@ -14,6 +16,7 @@ class PlayerCore;
 }  // namespace media
 }  // namespace mdptvp
 
+
 namespace mdptvp {
 class MainWindow : public QMainWindow {
   Q_OBJECT
@@ -24,15 +27,8 @@ class MainWindow : public QMainWindow {
   void closeEvent(QCloseEvent *event);
 
  private:
-  Ui::MainWindow *ui;
+  std::unique_ptr<Ui::MainWindow> ui;
   media::PlayerCore *engine_;
-
-  void connectSignals();
-
- private slots:
-  void setPlayState(bool should_play);
-  void setOutputVisibility(bool visible);
-  void setOutputFullscreen(bool fullscreen);
 };
 }  // namespace mdptvp
 
