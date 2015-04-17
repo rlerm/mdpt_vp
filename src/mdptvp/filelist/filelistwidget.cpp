@@ -33,6 +33,8 @@ FileListWidget::FileListWidget(QWidget *parent)
 
   connect(add_file_action_, &QAction::triggered,
           [this](bool) { on_addFIleButton_clicked(); });
+  connect(remove_file_action_, &QAction::triggered,
+          [this](bool) { on_deleteFilesButton_clicked(); });
 }
 
 FileListWidget::~FileListWidget() {
