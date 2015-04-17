@@ -3,6 +3,7 @@
 
 #include "filelistmodel.h"
 
+#include <QtCore/QFileInfo>
 #include <QtCore/QItemSelection>
 #include <QtCore/QItemSelectionModel>
 #include <QtCore/QModelIndex>
@@ -12,12 +13,12 @@
 #include <QtWidgets/QListView>
 #include <QtWidgets/QListView>
 
-
 using mdptvp::filelist::FileListModel;
 using mdptvp::filelist::FileListWidget;
 
 const char* FileListWidget::ADD_ICON_PATH = ":/icons/add";
 const char* FileListWidget::REMOVE_ICON_PATH = ":/icons/delete";
+const char *FileListWidget::LAST_DIRECTORY_KEY = "last_used_directory";
 
 FileListWidget::FileListWidget(QWidget *parent)
     : QGroupBox(parent),
@@ -62,8 +63,7 @@ void FileListWidget::on_deleteFilesButton_clicked() {
 }
 
 void FileListWidget::on_addFIleButton_clicked() {
-  QSettings settings;
-  QString dir = settings.value("lastUsedDirectory").toString();
+  QString dir = settings_.value(LAST_DIRECTORY_KEY).toString();
   QStringList filenames =
       QFileDialog::getOpenFileNames(this, tr("Escolha o arquivo"), dir);
 
@@ -74,6 +74,9 @@ void FileListWidget::on_addFIleButton_clicked() {
   for (const QString &filename : filenames) {
     model_->insertFile(0, filename);
   }
+
+  settings_.setValue(LAST_DIRECTORY_KEY,
+                     QFileInfo(filenames.first()).absolutePath());
 }
 
 void FileListWidget::itemActivated(const QModelIndex &index) {
@@ -91,6 +94,7 @@ const QString FileListWidget::getIndexPath(const QModelIndex &index) {
 QAction *FileListWidget::getAddFileAction() const {
   return add_file_action_;
 }
+
 QAction *FileListWidget::getRemoveFileAction() const {
-    return remove_file_action_;
+  return remove_file_action_;
 }

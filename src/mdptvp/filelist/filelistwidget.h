@@ -1,7 +1,8 @@
 #ifndef MDPT_FILELIST_FILELISTWIDGET_H_INCLUDED
 #define MDPT_FILELIST_FILELISTWIDGET_H_INCLUDED
 
-#include <QGroupBox>
+#include <QtCore/QSettings>
+#include <QtWidgets/QGroupBox>
 
 namespace Ui {
 class FileListWidget;
@@ -33,11 +34,13 @@ class FileListWidget : public QGroupBox {
   void itemActivated(const QModelIndex &index);
 
  private:
-  static const char* ADD_ICON_PATH;
-  static const char* REMOVE_ICON_PATH;
+  static const char *ADD_ICON_PATH;
+  static const char *REMOVE_ICON_PATH;
+  static const char *LAST_DIRECTORY_KEY;
 
   const QString getIndexPath(const QModelIndex &index);
 
+  QSettings settings_;
   Ui::FileListWidget *ui;
   FileListModel *model_;
   QAction *add_file_action_;
