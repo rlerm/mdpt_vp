@@ -12,10 +12,11 @@ using mdptvp::media::PlayerCore;
 using mdptvp::media::VideoWidget;
 
 PlayerCore::PlayerCore(QObject *parent) : QObject(parent) {
-#ifndef NDEBUG
   QStringList args;
-#else
-  QStringList args = QStringList() << "--verbose=1";
+  args << "--intf" << "dummy";
+
+#ifndef NDEBUG
+  args << "--verbose=2";
   qDebug() << "Initializing vlc-qt " << args;
 #endif
 
