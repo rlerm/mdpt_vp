@@ -5,8 +5,6 @@
 
 #include "mdptvp/util/text.h"
 
-namespace util = ::mdptvp::util;
-
 namespace mdptvp {
 namespace gui {
 

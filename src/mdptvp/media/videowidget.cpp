@@ -7,8 +7,8 @@
 
 #include "mdptvp/util/gui.h"
 
-using ::mdptvp::media::VideoWidget;
-namespace util = ::mdptvp::util;
+namespace mdptvp {
+namespace media {
 
 const char* const VideoWidget::MONITOR_KEY = "last_used_monitor";
 
@@ -61,3 +61,6 @@ void VideoWidget::restoreSavedPosition() {
     util::moveToScreen(this, saved_value.toInt());
   }
 }
+
+}  // namespace media
+}  // namespace mdptvp

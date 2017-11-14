@@ -12,8 +12,9 @@
 
 #include "mdptvp/util/text.h"
 
-namespace text_util = mdptvp::util;
-using ::mdptvp::media::MediaInfoBox;
+namespace mdptvp {
+namespace media {
+
 class libvlc_media_t;
 
 MediaInfoBox::MediaInfoBox(QWidget *parent)
@@ -54,11 +55,14 @@ void MediaInfoBox::mediaChanged() {
     qDebug() << "Opened file " << media->currentLocation();
 
     ui->filename_display_->setText(file_info.fileName());
-    ui->size_display_->setText(text_util::formatBytes(file_info.size()));
+    ui->size_display_->setText(util::formatBytes(file_info.size()));
 
     VlcMetaManager meta(media);
     ui->title_display_->setText(meta.title());
     // ui->length_display_->setText(QString::number(player_->length()));
     ui->length_display_->setText(
-        text_util::formatTime(player_->length()));
+        util::formatTime(player_->length()));
 }
+
+}  // namespace media
+}  // namespace mdptvp

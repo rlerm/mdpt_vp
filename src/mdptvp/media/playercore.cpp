@@ -7,9 +7,10 @@
 #include "mdptvp/filelist/filelist.h"
 #include "mdptvp/media/videowidget.h"
 
+namespace mdptvp {
+namespace media {
+
 using mdptvp::filelist::FileList;
-using mdptvp::media::PlayerCore;
-using mdptvp::media::VideoWidget;
 
 PlayerCore::PlayerCore(QObject *parent) : QObject(parent) {
   QStringList args;
@@ -48,3 +49,6 @@ FileList *PlayerCore::newFileList(QObject *parent) {
 void PlayerCore::playMedia(VlcMedia *media) {
   player_->open(media);
 }
+
+}  // namespace media
+}  // namespace mdptvp

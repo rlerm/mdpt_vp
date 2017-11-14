@@ -5,7 +5,8 @@
 
 #include <vlc-qt/Media.h>
 
-using mdptvp::filelist::FileList;
+namespace mdptvp {
+namespace filelist {
 
 FileList::FileList(QObject *parent, VlcInstance *instance)
     : QObject(parent), vlc_instance_(instance) {}
@@ -48,3 +49,6 @@ void FileList::activateItem(int index) {
   qDebug() << "File activated: " << path;
   emit fileActivated(media_items_.value(path));
 }
+
+}  // namespace filelist
+}  // namespace mdptvp

@@ -8,9 +8,10 @@
 #include <QtCore/QVector>
 #include <QtCore/QTextStream>
 
-namespace util = ::mdptvp::util;
+namespace mdptvp {
+namespace util {
 
-QString util::formatTime(int msec) {
+QString formatTime(int msec) {
   int sec = msec / 1000;
   int min = sec / 60;
   sec %= 60;
@@ -29,7 +30,7 @@ QString util::formatTime(int msec) {
 
 const QVector<QString> SI_MULTIPLIERS = {"", "K", "M", "G", "T"};
 
-QString util::formatBytes(int bytes) {
+QString formatBytes(int bytes) {
   float readable = bytes;
 
   // This indicates that the multiplier to be shown is 1024*multiplier.
@@ -43,7 +44,7 @@ QString util::formatBytes(int bytes) {
       SI_MULTIPLIERS.at(multiplier) % "B";
 }
 
-QString util::readFile(const QString &path, QTextCodec *codec) {
+QString readFile(const QString &path, QTextCodec *codec) {
     QFile file(path);
     if(!file.open(QFile::ReadOnly | QFile::Text)) {
         return "";
@@ -53,3 +54,6 @@ QString util::readFile(const QString &path, QTextCodec *codec) {
     stream.setCodec(codec);
     return stream.readAll();
 }
+
+} // namespace util
+} // namespace mdptvp

@@ -14,7 +14,8 @@
 #include "mdptvp/media/playercore.h"
 #include "mdptvp/media/videowidget.h"
 
-using mdptvp::MainWindow;
+namespace mdptvp {
+
 using mdptvp::filelist::FileList;
 using mdptvp::filelist::FileListModel;
 using mdptvp::gui::AboutDialog;
@@ -54,9 +55,8 @@ MainWindow::MainWindow(QWidget *parent)
   });
 }
 
-MainWindow::~MainWindow() {
-}
-
 void MainWindow::closeEvent(QCloseEvent *) {
   engine_->videoOutput()->close();
 }
+
+}  // namespace mdptvp

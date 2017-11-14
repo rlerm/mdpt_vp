@@ -12,8 +12,8 @@
 #include <QtWidgets/QListView>
 #include <QtWidgets/QListView>
 
-using mdptvp::filelist::FileListModel;
-using mdptvp::filelist::FileListWidget;
+namespace mdptvp {
+namespace filelist {
 
 const char* FileListWidget::ADD_ICON_PATH = ":/icons/add";
 const char* FileListWidget::REMOVE_ICON_PATH = ":/icons/delete";
@@ -110,3 +110,6 @@ QDir FileListWidget::getDefaultOpenDirectory() {
   return QDir::homePath();
 #endif
 }
+
+}  // namespace filelist
+}  // namespace mdptvp

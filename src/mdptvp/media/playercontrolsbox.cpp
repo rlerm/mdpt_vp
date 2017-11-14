@@ -16,9 +16,10 @@
 #include "mdptvp/media/playercore.h"
 #include "mdptvp/media/videowidget.h"
 
-namespace util = ::mdptvp::util;
+namespace mdptvp {
+namespace media {
+
 using ::mdptvp::gui::DisplayListModel;
-using ::mdptvp::media::PlayerControlsBox;
 
 const char* PlayerControlsBox::PLAY_PAUSE_ICON = ":/icons/play";
 const char* PlayerControlsBox::STOP_ICON = ":/icons/stop";
@@ -132,3 +133,6 @@ QAction *PlayerControlsBox::playPauseAction() {
 QAction *PlayerControlsBox::stopAction() {
   return stop_action_;
 }
+
+}  // namespace media
+}  // namespace mdptvp

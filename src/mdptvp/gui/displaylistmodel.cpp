@@ -4,7 +4,8 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDesktopWidget>
 
-using ::mdptvp::gui::DisplayListModel;
+namespace mdptvp {
+namespace gui {
 
 DisplayListModel::DisplayListModel(QObject *parent)
     : QAbstractListModel(parent), desktop_(QApplication::desktop()) {
@@ -39,3 +40,6 @@ void DisplayListModel::setScreenCount(int new_count) {
   }
   screen_count_ = new_count;
 }
+
+}  // namespace gui
+}  // namespace mdptvp

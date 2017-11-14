@@ -5,9 +5,10 @@
 #include <QtWidgets/QDesktopWidget>
 #include <QtWidgets/QWidget>
 
-namespace util = ::mdptvp::util;
+namespace mdptvp {
+namespace util {
 
-void util::moveToScreen(QWidget* widget, int screen_number) {
+void moveToScreen(QWidget* widget, int screen_number) {
   QDesktopWidget* desktop = QApplication::desktop();
   if (screen_number >= desktop->screenCount()) {
     screen_number = -1;
@@ -24,3 +25,6 @@ void util::moveToScreen(QWidget* widget, int screen_number) {
 
   widget->setWindowState(old_state);
 }
+
+} // namespace util
+} // namespace mdptvp
