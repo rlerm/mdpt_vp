@@ -5,17 +5,8 @@
 
 #include <QMainWindow>
 
-// Forward-declarations.
-class VlcMedia;
-namespace Ui {
-class MainWindow;
-}  // namespace Ui
-namespace mdptvp {
-namespace media {
-class PlayerCore;
-}  // namespace media
-}  // namespace mdptvp
-
+#include "mdptvp/ui_mainwindow.h"
+#include "mdptvp/media/playercore.h"
 
 namespace mdptvp {
 
@@ -23,7 +14,7 @@ class MainWindow : public QMainWindow {
   Q_OBJECT
 
  public:
-  explicit MainWindow(QWidget *parent = 0);
+  explicit MainWindow(QWidget *parent = nullptr);
   ~MainWindow() override = default;
 
   void closeEvent(QCloseEvent *event);

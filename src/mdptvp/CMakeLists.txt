@@ -1,12 +1,13 @@
 # This allows includes to be done relative to the "project", i.e. "mdptvp/...".
 include_directories(
     ${CMAKE_SOURCE_DIR}/src
+    ${CMAKE_BINARY_DIR}/src
 )
 
 add_library(libmdptvp STATIC
+    mainwindow.ui
     mainwindow.cpp
     mainwindow.h
-    mainwindow.ui
 
     filelist/filelist.cpp
     filelist/filelist.h

@@ -1,5 +1,4 @@
 #include "mdptvp/mainwindow.h"
-#include "ui_mainwindow.h"
 
 #include <QtCore/QObject>
 #include <QtWidgets/QAction>
