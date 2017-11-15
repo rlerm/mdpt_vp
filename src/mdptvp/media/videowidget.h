@@ -3,13 +3,13 @@
 
 #include <QtCore/QSettings>
 #include <QtWidgets/QWidget>
+#include <QCloseEvent>
+#include <QCloseEvent>
+#include <QHideEvent>
+#include <QShowEvent>
+#include <QSettings>
 
 #include <vlc-qt/VideoDelegate.h>
-
-class QCloseEvent;
-class QHideEvent;
-class QShowEvent;
-class QSettings;
 
 namespace mdptvp {
 namespace media {

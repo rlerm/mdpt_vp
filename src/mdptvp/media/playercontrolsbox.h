@@ -4,23 +4,22 @@
 #include <memory>
 
 #include <QGroupBox>
+#include <QAction>
 
-class QAction;
+#include "mdptvp/media/playercore.h"
 
 namespace mdptvp {
 namespace media {
 
 namespace Ui {
 class PlayerControlsBox;
-}
-
-class PlayerCore;
+} // namespace Ui
 
 class PlayerControlsBox : public QGroupBox {
   Q_OBJECT
 
  public:
-  explicit PlayerControlsBox(QWidget *parent = 0);
+  explicit PlayerControlsBox(QWidget *parent = nullptr);
   ~PlayerControlsBox();
 
   void setEngine(PlayerCore *engine);

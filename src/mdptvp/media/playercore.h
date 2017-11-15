@@ -5,19 +5,13 @@
 
 #include <vlc-qt/Instance.h>
 #include <vlc-qt/MediaPlayer.h>
+#include <vlc-qt/Media.h>
 
-class VlcMedia;
+#include "mdptvp/filelist/filelist.h"
+#include "mdptvp/media/videowidget.h"
 
 namespace mdptvp {
-
-namespace filelist {
-class FileList;
-}  // namespace filelist
-
 namespace media {
-
-using ::mdptvp::filelist::FileList;
-class VideoWidget;
 
 class PlayerCore : public QObject {
   Q_OBJECT
@@ -28,7 +22,7 @@ class PlayerCore : public QObject {
 
   VlcMediaPlayer *player() const;
   VideoWidget *videoOutput() const;
-  FileList *newFileList(QObject *parent = nullptr);
+  filelist::FileList *newFileList(QObject *parent = nullptr);
 
  public slots:
   void playMedia(VlcMedia *media);

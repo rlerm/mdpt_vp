@@ -4,9 +4,8 @@
 #include <QtCore/QAbstractListModel>
 #include <QtCore/QModelIndex>
 #include <QtCore/QVariant>
-
-class QObject;
-class QDesktopWidget;
+#include <QtCore/QObject>
+#include <QtWidgets/QDesktopWidget>
 
 namespace mdptvp {
 namespace gui {

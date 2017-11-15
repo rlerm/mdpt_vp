@@ -1,7 +1,7 @@
 #ifndef MDPTVP_UTIL_GUI_H_INCLUDED
 #define MDPTVP_UTIL_GUI_H_INCLUDED
 
-class QWidget;
+#include <QtWidgets/QWidget>
 
 namespace mdptvp {
 namespace util {

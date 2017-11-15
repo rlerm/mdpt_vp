@@ -2,8 +2,7 @@
 #define MDPTVP_MEDIA_MEDIAINFOBOX_H_INCLUDED
 
 #include <QGroupBox>
-
-class VlcMediaPlayer;
+#include <vlc-qt/MediaPlayer.h>
 
 namespace mdptvp {
 namespace media {
